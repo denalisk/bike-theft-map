@@ -28,9 +28,17 @@ var getUniqueLocations = function(bikeArray) {
   var current = bikeArray;
   var uniqueLocations = [];
   for(var index = 0; index < bikeArray.length; index++) {
-    var city = current[index].stolen_location.split(",");
-    if(!(uniqueLocations.includes(city[0]))) {
-      uniqueLocations.push(city[0]);
+    var found = false;
+    var city = current[index].stolen_location.split(",")[0];
+    for(var jdex = 0; jdex < uniqueLocations.length; jdex++) {
+      if(uniqueLocations[jdex][0] === city) {
+        uniqueLocations[jdex][1]++;
+        found = true;
+        break;
+      }
+    }
+    if(!found) {
+      uniqueLocations.push([city, 1]);
     }
   }
   console.log(uniqueLocations);
