@@ -2,6 +2,10 @@ function Bike() {
 
 }
 
+//These are apparently equal:
+//1243231200
+//05.25.2009
+
 var bikeArray = [];
 
 function searchByLocation(city, page, divMaker) {
