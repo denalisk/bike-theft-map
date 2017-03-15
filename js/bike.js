@@ -17,10 +17,23 @@ function searchByLocation(city, page, divMaker) {
       console.log("It's happening!");
       divMaker(item);
     });
+    getUniqueLocations(bikeArray);
   })
   .fail(function(error) {
     console.log(error);
   })
+}
+
+var getUniqueLocations = function(bikeArray) {
+  var current = bikeArray;
+  var uniqueLocations = [];
+  for(var index = 0; index < bikeArray.length; index++) {
+    var city = current[index].stolen_location.split(",");
+    if(!(uniqueLocations.includes(city[0]))) {
+      uniqueLocations.push(city[0]);
+    }
+  }
+  console.log(uniqueLocations);
 }
 
 exports.bikeModule = Bike;

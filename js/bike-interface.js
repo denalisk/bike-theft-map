@@ -31,5 +31,9 @@ $(function(){
     page++
   });
 
+  $("#close").click(function(){
+    $(".bike-info").hide();
+  })
+
 
 });

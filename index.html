@@ -3,8 +3,9 @@
   <head>
     <link rel="stylesheet" href="build/css/vendor.css">
     <script src="build/js/vendor.min.js"></script>
-    <script type="text/javascript" src="build/js/app.js"></script>
     <link rel="stylesheet" href="build/css/styles.css" charset="utf-8">
+    <script type="text/javascript" src="build/js/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARio7i8ST5i225NE7LbezYE0LCp6ayPtQ"></script>
     <title>Bike Theft App</title>
   </head>
   <body>
@@ -23,6 +24,8 @@
       <h1>Date Stolen: <span class="bike-date"></span></h1>
       <h1>Location Last Seen: <span class="bike-stolen-location"></span></h1>
       <img id="bike-img" src="" alt="" />
+      <button type="button" id="close">Close</button>
     </div>
+    <div id="map"></div>
   </body>
 </html>
