@@ -200,15 +200,12 @@ Map.prototype.genMarker = function(cityDataArray) {
 Map.prototype.getCoordinates = function(cityDataArray) {
   var current = this;
   var city = cityDataArray[4];
-  // cityDataArray[1] = 39;
-  // cityDataArray[2] = -98;
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( { 'address': city}, function(results, status) {
     if (status == 'OK') {
       cityDataArray[1] = results[0].geometry.location.lat();
       cityDataArray[2] = results[0].geometry.location.lng();
       if (cityDataArray[5]) {
-        console.log("You're in the branch!");
         current.updateMap(cityDataArray)
       }
       current.genMarker(cityDataArray);

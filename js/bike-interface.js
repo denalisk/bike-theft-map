@@ -1,4 +1,3 @@
-var Bike = require("./../js/bike.js").bikeModule;
 var Search = require("./../js/bike.js").searchModule;
 var Map = require("./../js/map.js").mapModule;
 
@@ -57,7 +56,6 @@ $(function(){
         Search($("#location-input").val(), page, newMap, makeDiv);
         setTimeout(function(){
           scrolled = false;
-          console.log("Scroll now off");
         }, 5000);
       }
     }
