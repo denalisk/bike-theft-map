@@ -32,11 +32,11 @@ $(function(){
   newMap.displayMap(["", 47, -122, 0]);
   var page = 1;
   $(".search-form").submit(function(event){
+    page = 1;
     event.preventDefault();
     var city = [$("#location-input").val(), 0, 0, 0, $("#location-input").val()];
     newMap.getCoordinates(city);
     Search($("#location-input").val(), page, newMap, makeDiv);
-    page++;
   });
 
   $("#close").click(function(){
@@ -44,7 +44,23 @@ $(function(){
       $(".bike-info").hide().dequeue();
       $(this).dequeue();
     });
-  })
+  });
 
+  var scrolled = false;
+  $(".bike-container").scroll(function () {
+    if(scrolled == false)
+    {
+      if($(".scroll-tracker").offset().top - $(".bike-container").height() < 200)
+      {
+        scrolled = true;
+        page++;
+        Search($("#location-input").val(), page, newMap, makeDiv);
+        setTimeout(function(){
+          scrolled = false;
+          console.log("Scroll now off");
+        }, 5000);
+      }
+    }
 
+  });
 });

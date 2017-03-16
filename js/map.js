@@ -173,7 +173,12 @@ Map.prototype.displayMap = function(city) {
 
 Map.prototype.updateMap = function(cityDataArray) {
   this.map.setCenter({lat: cityDataArray[1], lng: (cityDataArray[2] - 0.5)});
-  this.map.setZoom(10);
+  if(cityDataArray[3] < 50) {
+    this.map.setZoom(9);
+  }
+  else {
+    this.map.setZoom(7);
+  }
 }
 
 Map.prototype.genMarker = function(cityDataArray) {
@@ -208,7 +213,7 @@ Map.prototype.getCoordinates = function(cityDataArray) {
       }
       current.genMarker(cityDataArray);
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      console.log('Geocode was not successful for the following reason: ' + status);
     }
   });
 };

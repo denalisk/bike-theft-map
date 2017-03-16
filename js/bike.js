@@ -25,7 +25,7 @@ function searchByLocation(city, page, map, divMaker) {
 }
 
 var processUniqueLocations = function(bikeArray, map) {
-  var current = bikeArray;
+  var current = bikeArray.slice();
   var uniqueLocations = [];
   for(var index = 0; index < bikeArray.length; index++) {
     var found = false;
@@ -39,19 +39,19 @@ var processUniqueLocations = function(bikeArray, map) {
       }
     }
     if(!found) {
-      var cityDataArray = [city, 0, 0, 1, locationFull, false];
-      map.getCoordinates(cityDataArray);
-      uniqueLocations.push(cityDataArray);
+      if(uniqueLocations.length === 0){
+        var cityDataArray = [city, 0, 0, 1, locationFull, true];
+        map.getCoordinates(cityDataArray);
+        uniqueLocations.push(cityDataArray);
+      }
+      else {
+        var cityDataArray = [city, 0, 0, 1, locationFull, false];
+        map.getCoordinates(cityDataArray);
+        uniqueLocations.push(cityDataArray);
+      }
     }
   }
-  var maxThefts = [0, 0];
-  for(var kdex = 0; kdex < uniqueLocations.length; kdex++) {
-    if (uniqueLocations[kdex][4] > maxThefts[0]) {
-      maxThefts[0] = uniqueLocations[kdex][4];
-      maxThefts[1] = kdex;
-    }
-  }
-  uniqueLocations[maxThefts[1]][5] = true;
+
   return uniqueLocations;
 }
 
