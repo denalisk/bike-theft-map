@@ -38,11 +38,19 @@ var processUniqueLocations = function(bikeArray, map) {
       }
     }
     if(!found) {
-      var cityDataArray = [city, 0, 0, 1, locationFull];
+      var cityDataArray = [city, 0, 0, 1, locationFull, false];
       map.getCoordinates(cityDataArray);
       uniqueLocations.push(cityDataArray);
     }
   }
+  var maxThefts = [0, 0];
+  for(var kdex = 0; kdex < uniqueLocations.length; kdex++) {
+    if (uniqueLocations[kdex][4] > maxThefts[0]) {
+      maxThefts[0] = uniqueLocations[kdex][4];
+      maxThefts[1] = kdex;
+    }
+  }
+  uniqueLocations[maxThefts[1]][5] = true;
   return uniqueLocations;
 }
 

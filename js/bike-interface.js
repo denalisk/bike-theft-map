@@ -13,7 +13,8 @@ function makeDiv(bike) {
     $(".bike-info").show();
     $(".bike-info").animate({right: "5%"}, 500);
     $(".bike-title").text(bike.title);
-    $(".bike-date").text(bike.date_stolen);
+    var date = new Date(bike.date_stolen*1000);
+    $(".bike-date").text((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
     $(".bike-frame-model").text(bike.frame_model);
     $(".bike-manufacturer").text(bike.manufacturer_name);
     $(".bike-stolen-location").text(bike.stolen_location);
@@ -28,10 +29,12 @@ function makeDiv(bike) {
 
 $(function(){
   var newMap = new Map();
+  newMap.displayMap(["", 47, -122, 0]);
   var page = 1;
   $(".search-form").submit(function(event){
     event.preventDefault();
-    newMap.displayMap();
+    var city = [$("#location-input").val(), 0, 0, 0, $("#location-input").val()];
+    newMap.getCoordinates(city);
     Search($("#location-input").val(), page, newMap, makeDiv);
     page++;
   });
