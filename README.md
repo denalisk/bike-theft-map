@@ -13,3 +13,6 @@
 
 
 ## API key? 3444fb1416800dcc95939d3ba1e57c939179f501b4962b092b5c7d6844f30ff6
+
+
+##Number seconds since midnight of jan 1st 1970 in london

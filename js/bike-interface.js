@@ -1,5 +1,6 @@
 var Bike = require("./../js/bike.js").bikeModule;
 var Search = require("./../js/bike.js").searchModule;
+var Map = require("./../js/map.js").mapModule;
 
 function makeDiv(bike) {
   $(".bike-container").append(
@@ -23,11 +24,13 @@ function makeDiv(bike) {
 };
 
 $(function(){
+  var newMap = new Map();
+  newMap.displayMap();
   var page = 1;
   $(".search-form").submit(function(event){
     event.preventDefault();
 
-    Search($("#location-input").val(), page, makeDiv);
+    Search($("#location-input").val(), page, newMap, makeDiv);
     page++
   });
 
