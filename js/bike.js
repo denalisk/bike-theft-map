@@ -13,12 +13,9 @@ function searchByLocation(city, page, map, divMaker) {
   .then(function(response) {
     response.bikes.forEach(function(item) {
       bikeArray.push(item);
-      console.log("It's happening!");
       divMaker(item);
     });
     var cities = processUniqueLocations(bikeArray, map);
-
-    console.log(cities);
 
   })
   .fail(function(error) {
@@ -32,6 +29,7 @@ var processUniqueLocations = function(bikeArray, map) {
   for(var index = 0; index < bikeArray.length; index++) {
     var found = false;
     var city = current[index].stolen_location.split(",")[0];
+    var locationFull = current[index].stolen_location;
     for(var jdex = 0; jdex < uniqueLocations.length; jdex++) {
       if(uniqueLocations[jdex][0] === city) {
         uniqueLocations[jdex][3]++;
@@ -40,10 +38,9 @@ var processUniqueLocations = function(bikeArray, map) {
       }
     }
     if(!found) {
-      var cityDataArray = [city, 0, 0, 1];
+      var cityDataArray = [city, 0, 0, 1, locationFull];
       map.getCoordinates(cityDataArray);
       uniqueLocations.push(cityDataArray);
-      map.genMarker(cityDataArray);
     }
   }
   return uniqueLocations;

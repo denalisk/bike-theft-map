@@ -4,11 +4,14 @@ var Map = require("./../js/map.js").mapModule;
 
 function makeDiv(bike) {
   $(".bike-container").append(
-    "<div class='bike-div' id='" + bike.id + "'>" + bike.title + "</div>"
+    "<div class='bike-div' id='" + bike.id + "'> <h4>" + bike.title + "</h4></div>"
   )
   $("#" + bike.id).click(function(){
-    console.log(bike.id);
+
+    $(".bike-info").hide();
+    $(".bike-info").animate({right: "-90%"}, 0);
     $(".bike-info").show();
+    $(".bike-info").animate({right: "5%"}, 500);
     $(".bike-title").text(bike.title);
     $(".bike-date").text(bike.date_stolen);
     $(".bike-frame-model").text(bike.frame_model);
@@ -25,17 +28,19 @@ function makeDiv(bike) {
 
 $(function(){
   var newMap = new Map();
-  newMap.displayMap();
   var page = 1;
   $(".search-form").submit(function(event){
     event.preventDefault();
-
+    newMap.displayMap();
     Search($("#location-input").val(), page, newMap, makeDiv);
-    page++
+    page++;
   });
 
   $("#close").click(function(){
-    $(".bike-info").hide();
+    $(".bike-info").animate({right: "-90%"}, 500).queue(function(){
+      $(".bike-info").hide().dequeue();
+      $(this).dequeue();
+    });
   })
 
 

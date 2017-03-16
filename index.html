@@ -8,24 +8,40 @@
     <title>Bike Theft App</title>
   </head>
   <body>
-    <form class="search-form">
-      <input type="text" name="location-input" id="location-input" value="" placeholder="search by location">
-      <button type="submit" name="button">Submit</button>
-    </form>
-
-    <div class="bike-container">
-
-    </div>
-    <div class="bike-info">
-      <h1>Name: <span class="bike-title"></span></h1>
-      <h1>Frame Model: <span class="bike-frame-model"></span></h1>
-      <h1>Manufacturer: <span class="bike-manufacturer"></span></h1>
-      <h1>Date Stolen: <span class="bike-date"></span></h1>
-      <h1>Location Last Seen: <span class="bike-stolen-location"></span></h1>
-      <img id="bike-img" src="" alt="" />
-      <button type="button" id="close">Close</button>
-    </div>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARio7i8ST5i225NE7LbezYE0LCp6ayPtQ"></script>
     <div id="map"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-4 bike-column">
+          <div class="row search-bar">
+            <h1 id="page-title">Stolen Bike List</h1>
+            <form class="search-form">
+              <input class="form-control" type="text" name="location-input" id="location-input" value="" placeholder="Search by city">
+              <button class="btn btn-primary" type="submit" name="button">Submit</button>
+            </form>
+          </div>
+          <div class="bike-container"></div>
+        </div>
+        <div class="col-xs-8">
+          <div class="row">
+            <div class="bike-info">
+              <h1>Name: <span class="bike-title"></span></h1>
+              <h1>Frame Model: <span class="bike-frame-model"></span></h1>
+              <h1>Manufacturer: <span class="bike-manufacturer"></span></h1>
+              <h1>Date Stolen: <span class="bike-date"></span></h1>
+              <h1>Location Last Seen: <span class="bike-stolen-location"></span></h1>
+              <div class="bike-img-div">
+                <img id="bike-img" src="" alt="" />
+              </div>
+              <button class="btn btn-primary close-btn" type="button" id="close">Close</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARio7i8ST5i225NE7LbezYE0LCp6ayPtQ"></script>
   </body>
 </html>
