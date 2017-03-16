@@ -9,6 +9,7 @@ function Bike() {
 var bikeArray = [];
 
 function searchByLocation(city, page, map, divMaker) {
+  bikeArray = [];
   $.get("https://bikeindex.org:443/api/v3/search?page=" + page + "&per_page=100&location=" + city + "&distance=10&stolenness=proximity")
   .then(function(response) {
     response.bikes.forEach(function(item) {
